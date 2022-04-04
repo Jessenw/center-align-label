@@ -8,12 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private let userView = UserView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
+        
+        view.addSubview(userView)
     }
+    
+    override public func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        let safeAreaBounds = view.bounds.inset(
+            by: view.safeAreaInsets)
 
-
+        let userViewSize = userView.sizeThatFits(safeAreaBounds.size)
+        
+        userView.frame = CGRect(
+            origin: safeAreaBounds.origin,
+            size: userViewSize)
+    }
 }
-
