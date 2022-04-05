@@ -7,6 +7,33 @@
 
 import UIKit
 
+class CircleView: UIView {
+    
+    private static let circleSize = CGSize(width: 48, height: 48)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func commonInit() {
+        let circlePath = UIBezierPath(
+            ovalIn: CGRect(
+                origin: .zero,
+                size: Self.circleSize))
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.fillColor = UIColor.red.cgColor
+        
+        layer.addSublayer(shapeLayer)
+    }
+}
+
 class UserView: UIView {
     
     private static let horizontalPadding: CGFloat = 8
@@ -69,5 +96,11 @@ class UserView: UIView {
         label.frame = CGRect(
             origin: CGPoint(x: left, y: .zero),
             size: labelSize)
+        
+//        label.frame = image.frame.centerAlignY(
+//            with: image.frame,
+//            left: left,
+//            font: <#T##UIFont?#>,
+//            precomputedSize: labelSize)
     }
 }

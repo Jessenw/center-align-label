@@ -13,6 +13,7 @@
 		A4E486FC27F90A3B00836706 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E486FB27F90A3B00836706 /* Assets.xcassets */; };
 		A4E486FF27F90A3B00836706 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E486FD27F90A3B00836706 /* LaunchScreen.storyboard */; };
 		A4E4870727FADE4F00836706 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E4870627FADE4F00836706 /* UserView.swift */; };
+		A4E4870927FC3B9900836706 /* CGRect+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E4870827FC3B9900836706 /* CGRect+Alignment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A4E486FE27F90A3B00836706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4E4870027F90A3B00836706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E4870627FADE4F00836706 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		A4E4870827FC3B9900836706 /* CGRect+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Alignment.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				A4E486FD27F90A3B00836706 /* LaunchScreen.storyboard */,
 				A4E4870027F90A3B00836706 /* Info.plist */,
 				A4E4870627FADE4F00836706 /* UserView.swift */,
+				A4E4870827FC3B9900836706 /* CGRect+Alignment.swift */,
 			);
 			path = "center-align-label";
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4E486F727F90A3A00836706 /* ViewController.swift in Sources */,
+				A4E4870927FC3B9900836706 /* CGRect+Alignment.swift in Sources */,
 				A4E486F327F90A3A00836706 /* AppDelegate.swift in Sources */,
 				A4E486F527F90A3A00836706 /* SceneDelegate.swift in Sources */,
 				A4E4870727FADE4F00836706 /* UserView.swift in Sources */,
