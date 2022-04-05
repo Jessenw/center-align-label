@@ -41,11 +41,15 @@ class UserView: UIView {
         let imageSize = image.sizeThatFits(size)
         let labelSize = label.sizeThatFits(size)
         
+        let maxWidth = max(imageSize.width, labelSize.width) + Self.horizontalPadding
+        
+        let maxHeight = max(imageSize.height, labelSize.height)
+        
         // Find the view with the greatest width/height, but
         // restrict to available size
         return CGSize(
-            width: min(max(imageSize.width, labelSize.width), size.width),
-            height: min(max(imageSize.height, labelSize.height), size.height))
+            width: min(maxWidth, size.width),
+            height: min(maxHeight, size.height))
     }
     
     override func layoutSubviews() {
@@ -53,23 +57,17 @@ class UserView: UIView {
         
         let availableSize = bounds.size
         
-        var left: CGFloat = Self.horizontalPadding
-        
         let imageSize = image.sizeThatFits(availableSize)
         let labelSize = label.sizeThatFits(availableSize)
         
         image.frame = CGRect(
-            origin: CGPoint(
-                x: left,
-                y: .zero),
+            origin: .zero,
             size: imageSize)
         
-        left += image.frame.maxX + Self.horizontalPadding
+        let left = image.frame.maxX + Self.horizontalPadding
         
         label.frame = CGRect(
-            origin: CGPoint(
-                x: left,
-                y: .zero),
+            origin: CGPoint(x: left, y: .zero),
             size: labelSize)
     }
 }

@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         let safeAreaBounds = view.bounds.inset(
             by: view.safeAreaInsets)
 
-        let userViewSize = userView.sizeThatFits(safeAreaBounds.size)
+        let userViewSize = userView.sizeThatFits(view.bounds.size)
         
         userView.frame = CGRect(
             origin: safeAreaBounds.origin,
