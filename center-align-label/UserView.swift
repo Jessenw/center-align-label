@@ -9,7 +9,7 @@ import UIKit
 
 class CircleView: UIView {
     
-    private static let circleSize = CGSize(width: 48, height: 48)
+    public static let circleSize = CGSize(width: 24, height: 24)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,15 +38,11 @@ class UserView: UIView {
     
     private static let horizontalPadding: CGFloat = 8
     
-    let image: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage.add
-        return image
-    }()
+    private let circle = CircleView()
     
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
-        label.text = "Hello World!"
+        label.text = "Tim Cook"
         return label
     }()
     
@@ -60,17 +56,17 @@ class UserView: UIView {
     }
     
     private func commonInit() {
-        addSubview(image)
+        addSubview(circle)
         addSubview(label)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let imageSize = image.sizeThatFits(size)
+        let circleSize = circle.sizeThatFits(size)
         let labelSize = label.sizeThatFits(size)
         
-        let maxWidth = max(imageSize.width, labelSize.width) + Self.horizontalPadding
+        let maxWidth = max(circleSize.width, labelSize.width) + Self.horizontalPadding
         
-        let maxHeight = max(imageSize.height, labelSize.height)
+        let maxHeight = max(circleSize.height, labelSize.height)
         
         // Find the view with the greatest width/height, but
         // restrict to available size
@@ -84,17 +80,19 @@ class UserView: UIView {
         
         let availableSize = bounds.size
         
-        let imageSize = image.sizeThatFits(availableSize)
+        let circleSize = CircleView.circleSize
         let labelSize = label.sizeThatFits(availableSize)
         
-        image.frame = CGRect(
+        circle.frame = CGRect(
             origin: .zero,
-            size: imageSize)
+            size: circleSize)
         
-        let left = image.frame.maxX + Self.horizontalPadding
+        let left = circle.frame.maxX + Self.horizontalPadding
         
         label.frame = CGRect(
-            origin: CGPoint(x: left, y: .zero),
+            origin: CGPoint(
+                x: left,
+                y: (circleSize.height - labelSize.height) / 2),
             size: labelSize)
         
 //        label.frame = image.frame.centerAlignY(

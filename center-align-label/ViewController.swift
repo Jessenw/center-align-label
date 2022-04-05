@@ -22,13 +22,20 @@ class ViewController: UIViewController {
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        let safeAreaBounds = view.bounds.inset(
-            by: view.safeAreaInsets)
+        let safeAreaBounds = view.bounds.inset(by: view.safeAreaInsets)
+        let safeAreaBoundsSize = view.bounds.inset(
+            by: view.safeAreaInsets).size
 
-        let userViewSize = userView.sizeThatFits(view.bounds.size)
+        let userViewSize = userView.sizeThatFits(safeAreaBoundsSize)
         
         userView.frame = CGRect(
             origin: safeAreaBounds.origin,
             size: userViewSize)
+        
+//        userView.frame = CGRect(
+//            origin: CGPoint(
+//                x: (safeAreaBoundsSize.height - userViewSize.height) / 2,
+//                y: (safeAreaBoundsSize.width - userViewSize.width) / 2),
+//            size: userViewSize)
     }
 }
