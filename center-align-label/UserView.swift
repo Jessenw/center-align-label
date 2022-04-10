@@ -11,10 +11,21 @@ class UserView: UIView {
     
     private static let horizontalPadding: CGFloat = 8
     
+    public var fontAttributeViewIsHidden: Bool {
+        get { baselineView.isHidden }
+        set {
+            baselineView.isHidden = newValue
+            xHeightView.isHidden = newValue
+            capHeightView.isHidden = newValue
+            ascenderView.isHidden = newValue
+            descenderView.isHidden = newValue
+        }
+    }
+    
     private let circle = CircleView()
     private let label = UILabel()
     
-    // MARK: - Debug views
+    // MARK: - Font attribute views
     private var baselineView: UIView = {
         let view = UIView()
         view.backgroundColor = .blue
@@ -70,7 +81,6 @@ class UserView: UIView {
         
         addSubview(circle)
         addSubview(label)
-        
         addSubview(baselineView)
         addSubview(xHeightView)
         addSubview(capHeightView)
@@ -99,9 +109,6 @@ class UserView: UIView {
         
         let circleSize = CircleView.circleSize
         let labelSize = label.sizeThatFits(availableSize)
-        
-        print("Circle size: \(circleSize)")
-        print("Label size: \(labelSize)")
         
         circle.frame = CGRect(
             origin: .zero,

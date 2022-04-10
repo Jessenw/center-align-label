@@ -13,7 +13,16 @@ class ViewController: UIViewController {
     
     private let userView = UserView(text: "Craig Federighi")
     private let userViewAligned = UserView(text: "Tim Cook", useCorrectAlignment: true)
-
+    
+    private lazy var toggleFontAttributeSwitch = LabelledSwitchView(viewController: self)
+    public var showFontAttributes: Bool {
+        get { true }
+        set {
+            userView.fontAttributeViewIsHidden = !newValue
+            userViewAligned.fontAttributeViewIsHidden = !newValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +30,8 @@ class ViewController: UIViewController {
         
         view.addSubview(userView)
         view.addSubview(userViewAligned)
+        
+        view.addSubview(toggleFontAttributeSwitch)
     }
     
     override public func viewWillLayoutSubviews() {
@@ -29,7 +40,17 @@ class ViewController: UIViewController {
         let safeAreaBounds = view.bounds.inset(by: view.safeAreaInsets)
         let safeAreaBoundsSize = view.bounds.inset(
             by: view.safeAreaInsets).size
-
+        
+        // Layout button
+        let fontAttributeSwitchSize = toggleFontAttributeSwitch.sizeThatFits(safeAreaBoundsSize)
+        toggleFontAttributeSwitch.frame = CGRect(
+            origin: safeAreaBounds.origin,
+            size: fontAttributeSwitchSize)
+        
+        toggleFontAttributeSwitch.frame.origin.x += 8
+        toggleFontAttributeSwitch.frame.origin.y += 8
+        
+        // Layout user views
         let userViewSize = userView.sizeThatFits(safeAreaBoundsSize)
         let userViewAlignedSize = userViewAligned.sizeThatFits(safeAreaBoundsSize)
         
