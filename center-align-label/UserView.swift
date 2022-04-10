@@ -66,6 +66,8 @@ class UserView: UIView {
     }
     
     private func commonInit() {
+        label.font = label.font.withSize(36)
+        
         addSubview(circle)
         addSubview(label)
         
@@ -124,6 +126,7 @@ class UserView: UIView {
         // Layout debug views
         if let font = label.font {
             let lineWidth: CGFloat = 1
+            
             let lineSize = CGSize(
                 width: availableSize.width,
                 height: lineWidth)

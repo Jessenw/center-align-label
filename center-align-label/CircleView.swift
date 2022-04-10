@@ -9,7 +9,7 @@ import UIKit
 
 class CircleView: UIView {
     
-    public static let circleSize = CGSize(width: 24, height: 24)
+    public static let circleSize = CGSize(width: 48, height: 48)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
