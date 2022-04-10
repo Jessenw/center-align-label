@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let userView = UserView()
+    private let userView = UserView(text: "Tim Cook")
+    private let userViewAligned = UserView(text: "Syteve Jobs", useCorrectAlignment: true)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(userView)
+        view.addSubview(userViewAligned)
     }
     
     override public func viewWillLayoutSubviews() {
@@ -27,15 +29,16 @@ class ViewController: UIViewController {
             by: view.safeAreaInsets).size
 
         let userViewSize = userView.sizeThatFits(safeAreaBoundsSize)
+        let userViewAlignmentSize = userViewAligned.sizeThatFits(safeAreaBoundsSize)
         
         userView.frame = CGRect(
             origin: safeAreaBounds.origin,
             size: userViewSize)
         
-//        userView.frame = CGRect(
-//            origin: CGPoint(
-//                x: (safeAreaBoundsSize.height - userViewSize.height) / 2,
-//                y: (safeAreaBoundsSize.width - userViewSize.width) / 2),
-//            size: userViewSize)
+        userViewAligned.frame = CGRect(
+            origin: CGPoint(
+                x: safeAreaBounds.origin.x,
+                y: userView.frame.maxY + 16),
+            size: userViewAlignmentSize)
     }
 }
