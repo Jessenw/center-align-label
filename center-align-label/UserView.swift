@@ -22,8 +22,8 @@ class UserView: UIView {
         }
     }
     
-    private let circle = CircleView()
-    private let label = UILabel()
+    private let circleView = CircleView()
+    private let labelView = UILabel()
     
     // MARK: - Font attribute views
     private var baselineView: UIView = {
@@ -61,7 +61,7 @@ class UserView: UIView {
     init(text: String, useXHeightAlignment: Bool = false) {
         super.init(frame: .zero)
         
-        label.text = text
+        labelView.text = text
         self.useXHeightAlignment = useXHeightAlignment
         
         commonInit()
@@ -77,10 +77,10 @@ class UserView: UIView {
     }
     
     private func commonInit() {
-        label.font = label.font.withSize(36)
+        labelView.font = labelView.font.withSize(36)
         
-        addSubview(circle)
-        addSubview(label)
+        addSubview(circleView)
+        addSubview(labelView)
         addSubview(baselineView)
         addSubview(xHeightView)
         addSubview(capHeightView)
@@ -89,11 +89,11 @@ class UserView: UIView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let circleSize = CircleView.circleSize
-        let labelSize = label.sizeThatFits(size)
+        let circleSize = circleView.circleSize
+        let labelSize = labelView.sizeThatFits(size)
         
-        let maxWidth = circleSize.width + labelSize.width + Self.horizontalPadding
-        let maxHeight = max(circleSize.height, labelSize.height)
+        let maxWidth = circleSize + labelSize.width + Self.horizontalPadding
+        let maxHeight = max(circleSize, labelSize.height)
         
         // Find the view with the greatest width/height, but
         // restrict to available size
@@ -107,31 +107,31 @@ class UserView: UIView {
         
         let availableSize = bounds.size
         
-        let circleSize = CircleView.circleSize
-        let labelSize = label.sizeThatFits(availableSize)
+        let circleSize = circleView.circleSize
+        let labelSize = labelView.sizeThatFits(availableSize)
         
-        circle.frame = CGRect(
+        circleView.frame = CGRect(
             origin: .zero,
-            size: circleSize)
+            size: CGSize(width: circleSize, height: circleSize))
         
-        let left = circle.frame.maxX + Self.horizontalPadding
+        let left = circleView.frame.maxX + Self.horizontalPadding
         
         if useXHeightAlignment {
-            label.frame = circle.frame.centerAlignY(
-                with: circle.frame,
+            labelView.frame = circleView.frame.centerAlignY(
+                with: circleView.frame,
                 left: left,
-                font: label.font,
+                font: labelView.font,
                 precomputedSize: labelSize)
         } else {
-            label.frame = CGRect(
+            labelView.frame = CGRect(
                 origin: CGPoint(
                     x: left,
-                    y: (circleSize.height - labelSize.height) / 2),
+                    y: (circleSize - labelSize.height) / 2),
                 size: labelSize)
         }
         
         // Layout debug views
-        if let font = label.font {
+        if let font = labelView.font {
             let lineWidth: CGFloat = 1
             
             let lineSize = CGSize(
@@ -141,31 +141,31 @@ class UserView: UIView {
             baselineView.frame = CGRect(
                 origin: CGPoint(
                     x: .zero,
-                    y: label.frame.maxY + font.descender),
+                    y: labelView.frame.maxY + font.descender),
                 size: lineSize)
             
             xHeightView.frame = CGRect(
                 origin: CGPoint(
                     x: .zero,
-                    y: label.frame.maxY + font.descender - font.xHeight),
+                    y: labelView.frame.maxY + font.descender - font.xHeight),
                 size: lineSize)
             
             capHeightView.frame = CGRect(
                 origin: CGPoint(
                     x: .zero,
-                    y: label.frame.maxY + font.descender - font.capHeight),
+                    y: labelView.frame.maxY + font.descender - font.capHeight),
                 size: lineSize)
             
             ascenderView.frame = CGRect(
                 origin: CGPoint(
                     x: .zero,
-                    y: label.frame.maxY + font.descender - font.ascender),
+                    y: labelView.frame.maxY + font.descender - font.ascender),
                 size: lineSize)
             
             descenderView.frame = CGRect(
                 origin: CGPoint(
                     x: .zero,
-                    y: label.frame.maxY),
+                    y: labelView.frame.maxY),
                 size: lineSize)
 
         }
