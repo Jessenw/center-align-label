@@ -21,9 +21,9 @@ extension CGRect {
         
         var y: CGFloat = .zero
         
-        // Align the top of the font with the top of the view
+        // 1. Align the top of the fonts xHeight with the top of the view
         y -= font.lineHeight + font.descender - font.xHeight
-        // Center align with view
+        // 2. Center align with view using xHeight
         y += (rect.height - font.xHeight) / 2
 
         self.origin = CGPoint(x: left, y: y)
