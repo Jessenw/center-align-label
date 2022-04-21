@@ -17,25 +17,16 @@ extension CGRect {
     ///   - left: The starting X position
     ///   - font: The font whose values will be used to center the rect
     ///   - precomputedSize: The pre-computed size of the view being aligned
-    /// - Returns: UIRect which aligns with the provided rectangle
-    public func centerAlignY(with rect: CGRect, left: CGFloat, font: UIFont?, precomputedSize: CGSize = .zero) -> CGRect {
+    public mutating func centerAlignY(with rect: CGRect, left: CGFloat, font: UIFont, precomputedSize: CGSize = .zero) {
         
-        let y: CGFloat
+        var y: CGFloat = .zero
         
-        // If a font is provided to align text, align using the xHeight
-        if let font = font {
-            // Align the top of the font with the top of the view
-            let topPaddingOffset = font.lineHeight + font.descender - font.xHeight
-            // Center align with view
-            let centerAlignOffset = (rect.height - font.xHeight) / 2
+        // Align the top of the font with the top of the view
+        y -= font.lineHeight + font.descender - font.xHeight
+        // Center align with view
+        y += (rect.height - font.xHeight) / 2
 
-            y = rect.minY - topPaddingOffset + centerAlignOffset
-        } else {
-            y = ((rect.height - self.height) / 2) + rect.minY
-        }
-
-        return CGRect(
-            origin: CGPoint(x: left, y: y),
-            size: precomputedSize)
+        self.origin = CGPoint(x: left, y: y)
+        self.size = precomputedSize
     }
 }

@@ -69,7 +69,7 @@ class LabelledSwitchView: UIView {
                 y: (maxHeight - switchSize.height) / 2),
             size: switchSize)
         
-        labelView.frame = labelView.frame.centerAlignY(
+        labelView.frame.centerAlignY(
             with: switchView.frame,
             left: switchView.frame.maxX + Self.interItemPadding,
             font: labelView.font,

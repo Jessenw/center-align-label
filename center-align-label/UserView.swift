@@ -117,7 +117,7 @@ class UserView: UIView {
         let left = circleView.frame.maxX + Self.horizontalPadding
         
         if useXHeightAlignment {
-            labelView.frame = circleView.frame.centerAlignY(
+            labelView.frame.centerAlignY(
                 with: circleView.frame,
                 left: left,
                 font: labelView.font,
