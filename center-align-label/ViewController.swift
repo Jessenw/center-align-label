@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     private static let interItemPadding: CGFloat = 64
     
     private let userView = UserView(text: "Craig Federighi")
-    private let userViewAligned = UserView(text: "Tim Cook", useCorrectAlignment: true)
+    private let userViewAligned = UserView(text: "Tim Cook", useXHeightAlignment: true)
     
     private lazy var toggleFontAttributeSwitch = LabelledSwitchView(viewController: self)
     public var showFontAttributes: Bool {

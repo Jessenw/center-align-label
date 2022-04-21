@@ -9,19 +9,17 @@ import UIKit
 
 class CircleView: UIView {
     
-    public static let circleSize = CGSize(width: 48, height: 48)
+    private let circleSize: CGFloat = 48
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let circlePath = UIBezierPath(
-            ovalIn: CGRect(
-                origin: .zero,
-                size: Self.circleSize))
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = UIColor.red.cgColor
+        let shapeLayer = CALayer()
+        shapeLayer.frame = CGRect(
+            origin: .zero,
+            size: CGSize(width: circleSize, height: circleSize))
+        shapeLayer.cornerRadius = circleSize / 2
+        shapeLayer.backgroundColor = UIColor.red.cgColor
         
         layer.addSublayer(shapeLayer)
     }

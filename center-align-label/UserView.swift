@@ -56,13 +56,13 @@ class UserView: UIView {
         return view
     }()
     
-    private var useCorrectAlignment = false
+    private var useXHeightAlignment = false
     
-    init(text: String, useCorrectAlignment: Bool = false) {
+    init(text: String, useXHeightAlignment: Bool = false) {
         super.init(frame: .zero)
         
         label.text = text
-        self.useCorrectAlignment = useCorrectAlignment
+        self.useXHeightAlignment = useXHeightAlignment
         
         commonInit()
     }
@@ -116,7 +116,7 @@ class UserView: UIView {
         
         let left = circle.frame.maxX + Self.horizontalPadding
         
-        if useCorrectAlignment {
+        if useXHeightAlignment {
             label.frame = circle.frame.centerAlignY(
                 with: circle.frame,
                 left: left,
