@@ -25,8 +25,9 @@ extension CGRect {
         y -= font.lineHeight + font.descender - font.xHeight
         // 2. Center align with view using xHeight
         y += (rect.height - font.xHeight) / 2
-
-        self.origin = CGPoint(x: left, y: y)
-        self.size = precomputedSize
+        
+        self = CGRect(
+            origin: CGPoint(x: left, y: y),
+            size: precomputedSize)
     }
 }
